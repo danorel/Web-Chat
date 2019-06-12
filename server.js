@@ -1,12 +1,15 @@
-let user = require('./user/user');
+let User = require('./user/user');
+let phrases = require('./db');
+phrases.connect();
 
-let users = [];
-let first_user = new user.User("Petya");
-let second_user = new user.User("Daniel");
-users.push(first_user);
-users.push(second_user);
-broadcast(users);
+let run = function() {
+    let first_user = new User("Olia");
+    let second_user = new User("Daniel");
+    first_user.message(second_user);
+};
 
-function broadcast(users){
-
+if(module.parent){
+    module.exports.run = run;
+} else {
+    run();
 }

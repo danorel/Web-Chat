@@ -1,14 +1,12 @@
-let ukr_answer = require('./json/ukr');
-let ru_answer = require('./json/ru');
-let eng_answer = require('./json/eng');
-
+let phrases = require('./../db');
+let logger = require('logger')(module);
 
 function User(name){
     this.name = name;
 }
 
-User.prototype.saysTo = function (who) {
-    console.log(ru_answer.Hello + ", " + who.name);
+User.prototype.message = function (who) {
+    logger(phrases.getPhrase("Hello") + ", " + who.name);
 };
 
-exports.User = User;
+module.exports = User;
